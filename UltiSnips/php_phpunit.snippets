@@ -11,7 +11,7 @@ if m:
 `;
 
 /**
- * @author `whoami`
+ * @author ${1:`!v g:snips_author`}
  */
 class `!p
 snip.rv = re.match(r'.*(?=\.)', fn).group()
@@ -29,4 +29,55 @@ expects($this->${1:once}())
 	->method('${2}')
 	->with($this->equalTo(${3})${4})
 	->will($this->returnValue(${5}));
+endsnippet
+
+snippet pu_ase "phpunit assertEquals"
+$this->assertEquals(${1:expected}, ${2:actual});
+endsnippet
+
+snippet pu_asne "phpunit assertNotEquals"
+$this->assertNotEquals(${1:expected}, ${2:actual});
+endsnippet
+
+snippet pu_asf "phpunit assertFalse"
+$this->assertFalse(${1:Something});
+endsnippet
+
+snippet pu_ast "phpunit assertTrue"
+$this->assertTrue(${1:Something});
+endsnippet
+
+snippet pu_asfex "phpunit assertFileExists"
+$this->assertFileExists(${1:path/to/file});
+endsnippet
+
+snippet pu_asfnex "phpunit assertFileNotExists"
+$this->assertFileNotExists(${1:path/to/file});
+endsnippet
+
+snippet pu_ascon "phpunit assertContains"
+$this->assertContains(${1:Search Value}, ${2:Array or Iterator});
+endsnippet
+
+snippet pu_ashk "phpunit assertArrayHasKey"
+$this->assertArrayHasKey(${1:key}, ${2:array});
+endsnippet
+
+snippet pu_asnhk "phpunit assertArrayNotHasKey"
+this->assertArrayNotHasKey(${1:value}, ${2:array});
+endsnippet
+
+snippet pu_ascha "phpunit assertClassHasAttribute"
+$this->assertClassHasAttribute('${1:Attribute Name}', '${2:ClassName}');
+endsnippet
+
+snippet pu_asi "phpunit assertInstanceOf"
+$this->assertInstanceOf(${1:expected}, ${2:actual});
+endsnippet
+
+snippet pu_tc "phpunit test function"
+public function test${1:name_of_the_test}()
+{
+	${0:code}
+}
 endsnippet
