@@ -1,7 +1,16 @@
-priority -50
+extends html
 
-## Snippets from SnipMate, taken from
-## https://github.com/scrooloose/snipmate-snippets.git
+snippet php "<?php"
+<?php
+
+${0}
+endsnippet
+
+snippet <?
+<?php
+
+${0}
+endsnippet
 
 snippet array "array"
 $${1:arrayName} = array('${2}' => ${3});${4}
@@ -11,233 +20,216 @@ snippet def "def"
 define('${1}'${2});${3}
 endsnippet
 
+# defined(...)
+snippet def? "def?"
+${1}defined('${2}')
+endsnippet
+
+snippet if "if"
+if (${1:/* condition */}) {
+    ${2:// code...}
+}
+endsnippet
+
+snippet eif "eif"
+elseif (${1:/* condition */}) {
+    ${0}
+}
+endsnippet
+
+snippet else "else"
+else {
+    ${1:// code...}
+}
+endsnippet
+
+snippet ife "if else"
+if (${1:/* condition */}) {
+    ${2:// code...}
+} else {
+    ${3:// code...}
+}
+$0
+endsnippet
+
+snippet =?:
+	$${1:foo} = ${2:true} ? ${3:a} : ${0};
+endsnippet
+
+snippet ?:
+	${1:true} ? ${2:a} : ${0}
+endsnippet
+
+snippet for "for"
+for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+    ${4:// code...}
+}
+endsnippet
+
+snippet foreach "Foreach loop"
+foreach ($${1:variable} as $${3:value}) {
+    ${VISUAL}${4}
+}
+$0
+endsnippet
+
+snippet foreachk "foreachk"
+foreach ($${1:variable} as $${2:key} => $${3:value}){
+    ${4:// code...}
+}
+endsnippet
+
+snippet wh "wh"
+while (${1:/* condition */}) {
+    ${0}
+}
+endsnippet
+
 snippet do "do"
 do {
-	${2:// code... }
+    ${2:// code... }
 } while (${1:/* condition */});"
 endsnippet
 
-snippet doc_f "doc_f"
+snippet switch "switch"
+switch ($${1:variable}) {
+    case '${2:value}':
+        ${3}
+        break;
+    ${0}
+    default:
+        ${4}
+        break;
+}
+endsnippet
+
+snippet case "case"
+case '${1:value}':
+    ${2}
+    break;
+endsnippet
+
+snippet var "documentad var"
+/**
+ * @var ${3:int}
+ **/
+${1:protected }$${2:var};
+endsnippet
+
+snippet func "documented function"
 /**
  * $2
  * @return ${4:void}
  * @author ${5:`!v g:snips_author`}
  **/
-${1:public }function ${2:someFunc}(${3})
-{${6}
+${1:public }function ${2:someFunc}(${3}) {
+    ${6}
 }
 endsnippet
 
-snippet doc_i "doc_i"
+snippet gs "PHP Class Getter Setter" !b
 /**
- * $1
- * @package ${2:default}
- * @author ${3:`!v g:snips_author`}
+ * @var ${3:int}
  **/
-interface ${1:someClass}
-{${4}
-} // END interface $1"
-endsnippet
+${1:protected }$${2:var};
 
-snippet else "else"
-else {
-	${1:// code...}
-}
-endsnippet
-
-snippet for "for"
-for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
-	${4:// code...}
-}
-endsnippet
-
-snippet foreachk "foreachk"
-foreach ($${1:variable} as $${2:key} => $${3:value}){
-	${4:// code...}
-}
-endsnippet
-
-snippet get "get"
-$_GET['${1}']${2}
-endsnippet
-
-snippet if "if"
-if (${1:/* condition */}) {
-	${2:// code...}
-}
-endsnippet
-
-snippet inc "inc"
-include '${1:file}';${2}
-endsnippet
-
-snippet log "log"
-error_log(var_export(${1}, true));${2}
-endsnippet
-
-snippet post "post"
-$_POST['${1}']${2}
-endsnippet
-
-snippet req1 "req1"
-require_once '${1:file}';${2}
-endsnippet
-
-snippet session "session"
-$_SESSION['${1}']${2}
-endsnippet
-
-snippet t "t"
-$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};${5}
-endsnippet
-
-snippet var "var"
-var_export(${1});${2}
-endsnippet
-
-snippet getter "PHP Class Getter" b
 /*
- * Getter for $1
+ * Getter for $2
+ * @return $3
  */
-public function get${1/\w+\s*/\u$0/}()
-{
-	return $this->$1;$2
-}
-$4
-endsnippet
-
-snippet setter "PHP Class Setter" b
-/*
- * Setter for $1
- */
-public function set${1/\w+\s*/\u$0/}($$1)
-{
-	$this->$1 = $$1;$3
-	${4:return $this;}
-}
-$0
-endsnippet
-
-snippet gs "PHP Class Getter Setter" b
-/*
- * Getter for $1
- */
-public function get${1/\w+\s*/\u$0/}()
-{
-	return $this->$1;$2
+public function get${2/\w+\s*/\u$0/}() {
+    return $this->$2;
 }
 
 /*
- * Setter for $1
+ * Setter for $2
+ * @return $2
  */
-public function set${1/\w+\s*/\u$0/}($$1)
-{
-	$this->$1 = $$1;$3
-	${4:return $this;}
+public function set${2/\w+\s*/\u$0/}($$2) {
+    $this->$2 = $$2;
+    ${4:return $this;}
 }
 $0
 endsnippet
 
-snippet pub "Public function" b
-public function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet pro "Protected function" b
-protected function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet pri "Private function" b
-private function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet pubs "Public static function" b
-public static function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet pros "Protected static function" b
-protected static function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet pris "Private static function" b
-private static function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet fu "Function snip" b
-function ${1:name}(${2:$param})
-{
-	${VISUAL}${3:return null;}
-}
-$0
-endsnippet
-
-snippet fore "Foreach loop"
-foreach ($${1:variable} as $${3:value}){
-	${VISUAL}${4}
-}
-$0
-endsnippet
-
-snippet new "New class instance" b
+snippet new "New class instance" !b
 $$1 = new $1($2);
 $0
 endsnippet
 
-snippet ife "if else"
-if (${1:/* condition */}) {
-	${2:// code...}
-} else {
-	${3:// code...}
-}
-$0
+snippet ns "namespace"
+namespace ${1:`!p
+abspath = os.path.abspath(path)
+m = re.search(r'[A-Z].+(?=/)', abspath)
+if m:
+    snip.rv = m.group().replace('/', '\\')
+`};
+
 endsnippet
 
-snippet class "Class declaration template" b
+snippet class "Class declaration template" !b
 /**
- * Class ${1:`!p snip.rv=snip.fn.split('.')[0]`}
+ * Class ${3:`!p snip.rv=snip.fn.split('.')[0]`}
  * @author ${2:`!v g:snips_author`}
  */
-class $1
-{
-	public function ${3:__construct}(${4:$options})
-	{
-		${4:// code}
-	}
+`!p
+m = re.search(r'Abstract', path)
+if m:
+	snip.rv = 'abstract '
+``!p
+if re.search(r'Interface', path):
+	snip.rv = 'interface'
+elif re.search(r'Trait', path):
+	snip.rv = 'trait'
+else:
+	snip.rv = 'class'
+` ${3:`!v SnippetFilename()`} {
+    public function ${4:__construct}(${5:$options}) {
+        ${6:// code}
+    }
 }
 $0
 endsnippet
 
-snippet construct "__construct()" b
+snippet nc "php namespace and class or interface" b
+namespace ${1:`!p 
+abspath = os.path.abspath(path)
+m = re.search(r'[A-Z].+(?=/)', abspath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
 /**
- * @param $2mixed ${1/, /\n     * \@param mixed /g}
+ * Class ${3:`!p snip.rv=snip.fn.split('.')[0]`}
+ * @author ${2:`!v g:snips_author`}
  */
-public function __construct(${1:$dependencies})
-{${1/\$(\w+)(, )*/\n        $this->$1 = $$1;/g}
+`!p
+m = re.search(r'Abstract', path)
+if m:
+	snip.rv = 'abstract '
+``!p
+if re.search(r'Interface', path):
+	snip.rv = 'interface'
+elif re.search(r'Trait', path):
+	snip.rv = 'trait'
+else:
+	snip.rv = 'class'
+` ${3:`!v SnippetFilename()`} {
+    public function ${4:__construct}(${5:$options}) {
+        ${6:// code}
+    }
+	$0
 }
-$0
+endsnippet
+
+#setter
+snippet $s
+	${1:$foo}->set${2:Bar}(${0});
+endsnippet
+
+#getter
+snippet $g
+	${1:$foo}->get${0:Bar}();
 endsnippet
 
 snippet pr "Dumb debug helper in HTML"
@@ -248,17 +240,112 @@ snippet pc "Dumb debug helper in cli"
 var_export($1);$0
 endsnippet
 
-# Symfony 2 based snippets
-snippet sfa "Symfony 2 Controller action"
-/**
-* @Route("/${1:route_name}", name="$1")
-* @Template()
-*/
-public function $1Action($2)
-{
-	$3
-	return ${4:array();}$0
+snippet ret "return"
+return ${1:true};
+endsnippet
+
+snippet vd "vd"
+var_dump(${0});
+endsnippet
+
+snippet vdd "vdd"
+var_dump(${1}); die(${0:});
+endsnippet
+
+snippet inc "inc"
+include '${1:file}';${2}
+endsnippet
+
+snippet req1 "req1"
+require_once '${1:file}';${2}
+endsnippet
+
+snippet try "try"
+try {
+    ${0}
+} catch (${1:\Exception} $e) {
 }
 endsnippet
 
+snippet doc_f
+/**
+ * ${4:undocumented function}
+ *
+ * @return ${5:void}
+ * @author ${6:`g:snips_author`}
+ */
+endsnippet
+
+snippet doc_h
+/**
+ * ${1}
+ *
+ * @author ${2:`g:snips_author`}
+ * @version ${3:$Id$}
+ * @copyright ${4:$2}, `strftime('%d %B, %Y')`
+ * @package ${0:default}
+ */
+endsnippet
+
+snippet doc_c
+/**
+ * Class ${0:`!p snip.rv=snip.fn.split('.')[0]`}
+ * @author ${1:`!v g:snips_author`}
+ */
+endsnippet
+
+# phpunit	
+snippet pu_ase
+$this->assertEquals(${1:expected}, ${2:actual});
+endsnippet
+
+snippet pu_asne
+$this->assertNotEquals(${1:expected}, ${2:actual});
+endsnippet
+
+snippet pu_asf
+$this->assertFalse(${1:Something});
+endsnippet
+
+snippet pu_ast
+$this->assertTrue(${1:Something});
+endsnippet
+
+snippet pu_asfex
+$this->assertFileExists(${1:path/to/file});
+endsnippet
+
+snippet pu_asfnex
+$this->assertFileNotExists(${1:path/to/file});
+endsnippet
+
+snippet pu_ascon
+$this->assertContains(${1:Search Value}, ${2:Array or Iterator});
+endsnippet
+
+snippet pu_ashk
+$this->assertArrayHasKey(${1:key}, ${2:array});
+endsnippet
+
+snippet pu_asnhk
+this->assertArrayNotHasKey(${1:value}, ${2:array});
+endsnippet
+
+snippet pu_ascha
+$this->assertClassHasAttribute('${1:Attribute Name}', '${2:ClassName}');
+endsnippet
+
+snippet pu_asi
+$this->assertInstanceOf(${1:expected}, ${2:actual});
+endsnippet
+
+snippet pu_tc
+public function test${1:name_of_the_test}()
+{
+	${0:code}
+}
+endsnippet
+
+
 # :vim:ft=snippets:
+
