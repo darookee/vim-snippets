@@ -31,5 +31,9 @@ ${3}
 endsnippet
 
 snippet ext "twig extends" b
-{% extends ${1} %}
+{% extends '${1:template}' %}${2}
+endsnippet
+
+snippet |date "twig format as date" b
+{{ ${1:a_date}|date("${2:m/d/Y}") }}
 endsnippet
