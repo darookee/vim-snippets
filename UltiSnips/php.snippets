@@ -172,8 +172,6 @@ snippet class "Class declaration template" !b
 /**
  * Class ${2:`!p snip.rv=snip.fn.split('.')[0]`}
  * @author `!v g:snips_author`
- * @version ${6:$Id$}
- * @copyright ${7:`!v g:snips_author`}, `strftime('%d %B, %Y')`
  */
 `!p
 m = re.search(r'Abstract', path)
@@ -208,8 +206,6 @@ if m:
 /**
  * Class ${2:`!p snip.rv=snip.fn.split('.')[0]`}
  * @author `!v g:snips_author`
- * @version ${6:$Id$}
- * @copyright ${7:`!v g:snips_author`}, `strftime('%d %B, %Y')`
  */
 `!p
 m = re.search(r'Abstract', path)
@@ -301,8 +297,6 @@ snippet doc_c "class doc"
 /**
  * Class ${0:`!p snip.rv=snip.fn.split('.')[0]`}
  * @author `!v g:snips_author`
- * @version ${3:$Id$}
- * @copyright ${4:$2}, `strftime('%d %B, %Y')`
  */
 endsnippet
 
