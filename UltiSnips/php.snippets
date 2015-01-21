@@ -12,7 +12,7 @@ snippet <? "<?php"
 ${0}
 endsnippet
 
-snippet array "array"
+snippet arr "array"
 $${1:arrayName} = array('${2}' => ${3});${4}
 endsnippet
 
@@ -136,7 +136,8 @@ ${1:protected }$${2:var};
  * Getter for $2
  * @return $3
  */
-public function get${2/\w+\s*/\u$0/}() {
+public function get${2/\w+\s*/\u$0/}()
+{
     return $this->$2;
 }
 
@@ -144,7 +145,8 @@ public function get${2/\w+\s*/\u$0/}() {
  * Setter for $2
  * @return $2
  */
-public function set${2/\w+\s*/\u$0/}($$2) {
+public function set${2/\w+\s*/\u$0/}($$2)
+{
     $this->$2 = $$2;
     ${4:return $this;}
 }
@@ -168,8 +170,10 @@ endsnippet
 
 snippet class "Class declaration template" !b
 /**
- * Class ${3:`!p snip.rv=snip.fn.split('.')[0]`}
- * @author ${2:`!v g:snips_author`}
+ * Class ${2:`!p snip.rv=snip.fn.split('.')[0]`}
+ * @author `!v g:snips_author`
+ * @version ${6:$Id$}
+ * @copyright ${7:`!v g:snips_author`}, `strftime('%d %B, %Y')`
  */
 `!p
 m = re.search(r'Abstract', path)
@@ -182,9 +186,12 @@ elif re.search(r'Trait', path):
 	snip.rv = 'trait'
 else:
 	snip.rv = 'class'
-` ${3:`!v SnippetFilename()`} {
-    public function ${4:__construct}(${5:$options}) {
-        ${6:// code}
+` ${2:`!v SnippetFilename()`}
+{
+
+    public function ${3:__construct}(${4:$options})
+	{
+        ${8:// code}
     }
 }
 $0
@@ -199,8 +206,10 @@ if m:
 `};
 
 /**
- * Class ${3:`!p snip.rv=snip.fn.split('.')[0]`}
- * @author ${2:`!v g:snips_author`}
+ * Class ${2:`!p snip.rv=snip.fn.split('.')[0]`}
+ * @author `!v g:snips_author`
+ * @version ${6:$Id$}
+ * @copyright ${7:`!v g:snips_author`}, `strftime('%d %B, %Y')`
  */
 `!p
 m = re.search(r'Abstract', path)
@@ -213,9 +222,11 @@ elif re.search(r'Trait', path):
 	snip.rv = 'trait'
 else:
 	snip.rv = 'class'
-` ${3:`!v SnippetFilename()`} {
-    public function ${4:__construct}(${5:$options}) {
-        ${6:// code}
+` ${2:`!v SnippetFilename()`}
+{
+    public function ${3:__construct}(${4:$options})
+	{
+        ${8:// code}
     }
 	$0
 }
@@ -223,12 +234,12 @@ endsnippet
 
 #setter
 snippet $s "class set"
-	${1:$foo}->set${2:Bar}(${0});
+	${1:$this}->set${2:Bar}(${0});
 endsnippet
 
 #getter
 snippet $g "class get"
-	${1:$foo}->get${0:Bar}();
+	${1:$this}->get${0:Bar}();
 endsnippet
 
 snippet pr "Dumb debug helper in HTML"
@@ -271,7 +282,7 @@ snippet doc_f "function doc"
  * ${4:undocumented function}
  *
  * @return ${5:void}
- * @author ${6:`g:snips_author`}
+ * @author `!v g:snips_author`
  */
 endsnippet
 
@@ -279,7 +290,7 @@ snippet doc_h "file doc"
 /**
  * ${1}
  *
- * @author ${2:`g:snips_author`}
+ * @author `!v g:snips_author`
  * @version ${3:$Id$}
  * @copyright ${4:$2}, `strftime('%d %B, %Y')`
  * @package ${0:default}
@@ -289,7 +300,9 @@ endsnippet
 snippet doc_c "class doc"
 /**
  * Class ${0:`!p snip.rv=snip.fn.split('.')[0]`}
- * @author ${1:`!v g:snips_author`}
+ * @author `!v g:snips_author`
+ * @version ${3:$Id$}
+ * @copyright ${4:$2}, `strftime('%d %B, %Y')`
  */
 endsnippet
 
